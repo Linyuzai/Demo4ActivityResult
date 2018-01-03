@@ -18,6 +18,7 @@ import io.reactivex.subjects.PublishSubject;
 
 public class AResultFragment extends Fragment {
     private PublishSubject<AResultMessage> mSubject;
+    private Disposable mDisposable;
     private AResult.Callback mCallback;
 
     public static AResultFragment newInstance() {
@@ -36,6 +37,7 @@ public class AResultFragment extends Fragment {
         return mSubject.doOnSubscribe(new Consumer<Disposable>() {
             @Override
             public void accept(Disposable disposable) throws Exception {
+                mDisposable = disposable;
                 startActivityForResult(intent, requestCode);
             }
         });
@@ -63,5 +65,12 @@ public class AResultFragment extends Fragment {
                     resultCode == Activity.RESULT_CANCELED,
                     resultCode == Activity.RESULT_FIRST_USER));
         }
+    }
+
+    @Override
+    public void onDetach() {
+        super.onDetach();
+        if (mDisposable != null && !mDisposable.isDisposed())
+            mDisposable.dispose();
     }
 }
