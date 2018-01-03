@@ -48,4 +48,16 @@ public class AResultMessage {
     public boolean isFirstUser() {
         return isFirstUser;
     }
+
+    @Override
+    public String toString() {
+        return "AResultMessage{" +
+                "isOk=" + isOk +
+                ", isCancel=" + isCancel +
+                ", isFirstUser=" + isFirstUser +
+                ", resultCode=" + resultCode +
+                ", requestCode=" + requestCode +
+                ", intent=" + intent +
+                '}';
+    }
 }

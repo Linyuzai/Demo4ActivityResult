@@ -14,7 +14,7 @@ import io.reactivex.Observable;
 
 public class AResult {
     private static final String TAG = "AResult";
-    private static final int REQUEST_CODE = -8;
+    private static final int REQUEST_CODE = 0;
     private AResultFragment mAResultFragment;
 
     public AResult(Activity activity) {
@@ -76,7 +76,7 @@ public class AResult {
         startForResult(clazz, REQUEST_CODE, callback);
     }
 
-    interface Callback {
+    public interface Callback {
         void onActivityResult(AResultMessage result);
     }
 }

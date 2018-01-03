@@ -7,3 +7,6 @@
 /build
 /captures
 .externalNativeBuild
+bintray.gradle
+project.properties
+src/main/res/drawable/
