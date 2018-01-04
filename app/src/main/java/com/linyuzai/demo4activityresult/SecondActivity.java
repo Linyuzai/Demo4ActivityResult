@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 
 /**
  * Created by linyuzai on 2018/1/3.
+ * @author linyuzai
  */
 
 public class SecondActivity extends AppCompatActivity {

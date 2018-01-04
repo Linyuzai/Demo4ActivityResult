@@ -1,5 +1,6 @@
 package com.linyuzai.aresult;
 
+import android.app.Activity;
 import android.content.Intent;
 
 /**
@@ -9,24 +10,18 @@ import android.content.Intent;
  */
 
 public class AResultMessage {
-    private boolean isOk;
-    private boolean isCancel;
-    private boolean isFirstUser;
     private int resultCode;
     private int requestCode;
-    private Intent intent;
+    private Intent data;
 
-    AResultMessage(Intent intent, int resultCode, int requestCode, boolean isOk, boolean isCancel, boolean isFirstUser) {
-        this.intent = intent;
+    AResultMessage(Intent data, int resultCode, int requestCode) {
+        this.data = data;
         this.resultCode = resultCode;
         this.requestCode = requestCode;
-        this.isOk = isOk;
-        this.isCancel = isCancel;
-        this.isFirstUser = isFirstUser;
     }
 
-    public Intent getIntent() {
-        return intent;
+    public Intent getData() {
+        return data;
     }
 
     public int getResultCode() {
@@ -38,26 +33,26 @@ public class AResultMessage {
     }
 
     public boolean isOk() {
-        return isOk;
+        return resultCode == Activity.RESULT_OK;
     }
 
     public boolean isCancel() {
-        return isCancel;
+        return resultCode == Activity.RESULT_CANCELED;
     }
 
     public boolean isFirstUser() {
-        return isFirstUser;
+        return resultCode == Activity.RESULT_FIRST_USER;
     }
 
     @Override
     public String toString() {
         return "AResultMessage{" +
-                "isOk=" + isOk +
-                ", isCancel=" + isCancel +
-                ", isFirstUser=" + isFirstUser +
+                "isOk=" + isOk() +
+                ", isCancel=" + isCancel() +
+                ", isFirstUser=" + isFirstUser() +
                 ", resultCode=" + resultCode +
                 ", requestCode=" + requestCode +
-                ", intent=" + intent +
+                ", data=" + data +
                 '}';
     }
 }

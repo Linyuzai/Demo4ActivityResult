@@ -52,18 +52,13 @@ public class AResultFragment extends Fragment {
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
+        AResultMessage message = new AResultMessage(data, resultCode, requestCode);
         if (mSubject != null) {
-            mSubject.onNext(new AResultMessage(data, resultCode, requestCode,
-                    resultCode == Activity.RESULT_OK,
-                    resultCode == Activity.RESULT_CANCELED,
-                    resultCode == Activity.RESULT_FIRST_USER));
+            mSubject.onNext(message);
             mSubject.onComplete();
         }
         if (mCallback != null) {
-            mCallback.onActivityResult(new AResultMessage(data, resultCode, requestCode,
-                    resultCode == Activity.RESULT_OK,
-                    resultCode == Activity.RESULT_CANCELED,
-                    resultCode == Activity.RESULT_FIRST_USER));
+            mCallback.onActivityResult(message);
         }
     }
 
